@@ -1,5 +1,5 @@
 - name: Grant JIT Sudo Access
-  hosts: "{{ target_ci }}"
+  hosts: "{{ target_ci | default('all')}}"
   tasks:
     - name: Create temporary sudoers file
       ansible.builtin.copy:
