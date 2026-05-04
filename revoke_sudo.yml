@@ -1,5 +1,5 @@
 - name: Revoke JIT Sudo Access
-  hosts: "{{ target_ci | default('all')}}"
+  hosts: "{{ target_ci | default('all', true)}}" 
   tasks:
     - name: Remove temporary sudoers file
       ansible.builtin.file:
