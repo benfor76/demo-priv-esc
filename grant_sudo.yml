@@ -1,0 +1,9 @@
+- name: Grant JIT Sudo Access
+  hosts: "{{ target_ci }}"
+  tasks:
+    - name: Create temporary sudoers file
+      ansible.builtin.copy:
+        content: "{{ service_account }} ALL=(ALL) NOPASSWD: ALL"
+        dest: "/etc/sudoers.d/jit_{{ service_account }}"
+        mode: '0440'
+        validate: /usr/sbin/visudo -cf %s

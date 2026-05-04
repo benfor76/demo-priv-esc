@@ -1,0 +1,7 @@
+- name: Revoke JIT Sudo Access
+  hosts: hosts: "{{ target_ci | default('all')}}"
+  tasks:
+    - name: Remove temporary sudoers file
+      ansible.builtin.file:
+        path: "/etc/sudoers.d/jit_{{ service_account }}"
+        state: absent
